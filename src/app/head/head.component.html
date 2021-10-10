@@ -1,0 +1,22 @@
+<br>
+<form>
+  &nbsp; 
+    <input class="search" type="text" placeholder=" Search" aria-label="Search">
+      
+      <button mat-raised-button class="but"><mat-icon aria-hidden="true" aria-label="Example home icon" class="icon1">search</mat-icon>Search</button>
+  
+    </form>
+    <br>
+    &nbsp;
+    <div class="btn-group mr-3">
+      
+      <div class="btn-group" ngbDropdown role="group" aria-label="Button group with nested dropdown">
+        <button class="btn btn-outline-primary" ngbDropdownToggle>{{name1}}</button>
+        <div class="dropdown-menu" ngbDropdownMenu >
+          <button ngbDropdownItem *ngFor="let c of cities" (click)="onClick(c)">{{c.city}}</button>
+          
+        </div>
+      </div>
+    </div>
+    <br>
+    

@@ -1,0 +1,22 @@
+.example-spacer {
+    flex: 1 1 auto;
+  }
+
+
+.example-icon{
+    background-color: blue;
+    border-radius: 90%;
+    border: none;
+    
+}
+.icon1{
+  color: white;
+}
+.icon1:hover {
+    color:rgb(255, 0, 0);
+  }
+
+body{
+    background-color: blue;
+}
+

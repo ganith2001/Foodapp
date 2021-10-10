@@ -1,0 +1,21 @@
+.search{
+    width: 500px;
+    height:35px;
+    
+    border-top-left-radius: 50px;
+    border-bottom-left-radius: 50px;
+
+}
+
+.but{
+    color: white;
+    background-color: rgb(6, 59, 128);
+    font-weight: bolder;
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
+    height: 90%;
+}
+.btn-group{
+    width: 100px;
+}
+

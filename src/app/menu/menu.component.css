@@ -1,0 +1,29 @@
+
+
+  .example-card {
+    width: 350px;
+
+  }
+  
+  .example-header-image {
+    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+    background-size: cover;
+  }
+
+  .example-spacer {
+    flex: 1 1 auto;
+  }
+
+  button{
+      background-color: blue;
+      color: white;
+  }
+
+ .button1{
+   width: 30px;
+   border-color: blue;
+ }
+
+ .example-spacer {
+  flex: 1 1 auto;
+}

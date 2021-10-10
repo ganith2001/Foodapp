@@ -1,0 +1,39 @@
+<div>
+    
+
+    <mat-grid-list cols="3" rowHeight="1:1.5">
+      <mat-grid-tile style="color: tomato;" *ngFor="let dish of dishes">
+        <mat-card style="border-radius: 20px;" class="example-card">
+            
+            <img mat-card-image class="img" style="height: 300px;border-radius: 20px;" src={{dish.image}} alt="Photo of a Shiba Inu">
+           
+            
+            <mat-card-content>
+                
+                <h3>{{dish.name}}</h3> 
+               
+                          
+                <h5>- {{dish.hotel}}</h5>
+                <h6> {{dish.address}},{{dish.city}}</h6>
+              <p>
+                {{dish.description}}
+              </p>
+            </mat-card-content>
+            <mat-card-actions>
+              &nbsp;
+              <button style="border-radius: 20px;" mat-button>{{dish.rating}} <mat-icon class="icon1">star</mat-icon></button>
+              &nbsp;
+            <button class="button1"  (click)="onSelectp(dish)">+</button>
+            <input disabled style="width: 30px;" class="search" type="text" placeholder="{{array[dish.id].quantity}}" >  
+            
+            <button class="button1" (click)="onSelectn(dish)">-</button>
+            
+           &nbsp;
+            <button style="border-radius: 20px;" mat-button>{{dish.price | currency:"&#8377;"}}</button>
+          </mat-card-actions>
+          </mat-card>
+
+      </mat-grid-tile>
+      
+    </mat-grid-list>
+    </div>

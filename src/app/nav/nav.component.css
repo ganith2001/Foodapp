@@ -20,3 +20,13 @@ body{
     background-color: blue;
 }
 
+.btn1{
+  width: 10%;
+  background-color: white;
+  border-left: none;
+  border-style: none none solid none;
+
+  
+}
+
+

@@ -16,6 +16,11 @@ import { DishService } from './services/dish.service';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatCardModule} from '@angular/material/card';
 import { MenuComponent } from './menu/menu.component';
+
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { FormsModule } from '@angular/forms'; 
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,7 +37,12 @@ import { MenuComponent } from './menu/menu.component';
     MatMenuModule,
     NgbModule,
     MatGridListModule,
-    MatCardModule
+    MatCardModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatCheckboxModule,
+    FormsModule
+    
     
     
   ],

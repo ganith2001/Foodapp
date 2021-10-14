@@ -9,10 +9,55 @@
   </button>
   <p>&nbsp;&nbsp;</p>
   
-  <a mat-button style="color: black;" href="https://www.google.com/" target="_blank">Log-in</a>
-  <a mat-button style="color: black;" href="https://www.google.com/" target="_blank">Sign-up</a>
+  <a mat-button style="color: black;" (click)="open(content)" target="_blank">Log-in</a>
+  <a mat-button style="color: black;" (click)="open2(content2)" target="_blank">Sign-up</a>
   <button mat-icon-button class="example-icon" >
     <mat-icon class="icon1">account_circle</mat-icon>
   </button>
 </mat-toolbar>
 </body>
+<ng-template #content let-c="close" let-d="dismiss" style="height: 500px;">
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title" style="text-align: center;">LOG-IN</h4>
+    
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+   
+   <input matInput  class="search" type="text" placeholder=" Email" [(ngModel)]="user.username" aria-label="Search" style="width: 100%;"> <br><br>
+   <input matInput  [style.width]="width" class="search" style="outline:none;border-style: none none solid none;" (keyup)="clk($event)" type="{{pass}}" placeholder="Password" [(ngModel)]="user.password" aria-label="Search"> <button  *ngIf="visible" (click)="pwd()" class="btn1"><span class="material-icons">
+    visibility_off
+    </span>
+    </button>
+    
+  </div>
+  <div class="modal-footer">
+    <a (click)="d('Cross click')" (click)="open2(content2)">Account doesn't exist</a>
+    <button type="button" class="btn btn-outline-dark" (click)="c('Save click')">Log-in</button>
+  </div>
+</ng-template>
+
+<ng-template #content2 let-c="close" let-d="dismiss" style="height: 500px;">
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title" style="text-align: center;">SIGN-UP</h4>
+    
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <input class="search" type="text" placeholder=" Name" aria-label="Search" style="width: 100%;"> <br><br>
+    <input matInput  class="search" type="text" placeholder=" Email" [(ngModel)]="user.username" aria-label="Search" style="width: 100%;"> <br><br>
+   <input matInput  [style.width]="width" class="search" style="outline:none;border-style: none none solid none;" (keyup)="clk($event)" type="{{pass}}" placeholder="Password" [(ngModel)]="user.password" aria-label="Search"> <button  *ngIf="visible" (click)="pwd()" class="btn1"><span class="material-icons">
+    visibility_off
+    </span>
+    </button>
+    
+  </div>
+  <div class="modal-footer">
+    <a (click)="d('Cross click')" (click)="open(content)" >Account exist ? Log In</a>
+    <button type="button" class="btn btn-outline-dark" (click)="c('Save click')">Sign-up</button>
+  </div>
+</ng-template>

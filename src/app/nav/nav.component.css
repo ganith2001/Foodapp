@@ -29,4 +29,8 @@ body{
   
 }
 
+a:hover {
+  background-color: none;
+}
+
 

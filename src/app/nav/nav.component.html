@@ -1,3 +1,4 @@
+
 <body>
 <mat-toolbar class="navcolor">
   <span><img style="height: 60px;width: 60px;border-radius: 90%;" src="../../assets/images/heart.jpg" height=30 width=41></span>
@@ -9,14 +10,19 @@
   </button>
   <p>&nbsp;&nbsp;</p>
   
-  <a mat-button style="color: black;" (click)="open(content)" target="_blank">Log-in</a>
+  <a mat-button style="color: black;"  (click)='open(content)' target="_blank">Log-in</a>
   <a mat-button style="color: black;" (click)="open2(content2)" target="_blank">Sign-up</a>
-  <button mat-icon-button class="example-icon" >
-    <mat-icon class="icon1">account_circle</mat-icon>
-  </button>
+  <p>&nbsp;&nbsp;</p>
+  <a *ngIf="account" href="https://www.google.com/"><img style="height: 25px;width: 25px;border-radius: 90%;" src={{user2.url}}></a>
+  <p *ngIf="account">&nbsp;&nbsp;</p>
+  <a *ngIf="account" style="top: 10%;" ><span style="color: white;" class="material-icons">
+    shopping_cart
+    </span>
+    <span style="color:white;border-radius: 90%;position: absolute;top: 1%;right: 0.5%;">&nbsp;0&nbsp;</span>
+    </a>
 </mat-toolbar>
 </body>
-<ng-template #content let-c="close" let-d="dismiss" style="height: 500px;">
+<ng-template  #content let-c="close"  let-d="dismiss"  style="height: 500px;">
   <div class="modal-header">
     <h4 class="modal-title" id="modal-basic-title" style="text-align: center;">LOG-IN</h4>
     
@@ -28,14 +34,14 @@
    
    <input matInput  class="search" type="text" placeholder=" Email" [(ngModel)]="user.username" aria-label="Search" style="width: 100%;"> <br><br>
    <input matInput  [style.width]="width" class="search" style="outline:none;border-style: none none solid none;" (keyup)="clk($event)" type="{{pass}}" placeholder="Password" [(ngModel)]="user.password" aria-label="Search"> <button  *ngIf="visible" (click)="pwd()" class="btn1"><span class="material-icons">
-    visibility_off
+    {{eyes}}
     </span>
     </button>
     
   </div>
-  <div class="modal-footer" >
-    <a  (click)="open2(content2)">Account doesn't exist</a>
-    <button type="button" class="btn btn-outline-dark" (click)="c('Save click')">Log-in</button>
+  <div class="modal-footer">
+    <a (click)="d('Cross click')" (click)="open2(content2)">Account doesn't exist</a>
+    <button type="button"  class="btn btn-outline-dark" (click)= "login()" (click)= "c('Save click')"  >Log-in</button>
   </div>
 </ng-template>
 
@@ -51,7 +57,7 @@
     <input class="search" type="text" placeholder=" Name" aria-label="Search" style="width: 100%;"> <br><br>
     <input matInput  class="search" type="text" placeholder=" Email" [(ngModel)]="user.username" aria-label="Search" style="width: 100%;"> <br><br>
    <input matInput  [style.width]="width" class="search" style="outline:none;border-style: none none solid none;" (keyup)="clk($event)" type="{{pass}}" placeholder="Password" [(ngModel)]="user.password" aria-label="Search"> <button  *ngIf="visible" (click)="pwd()" class="btn1"><span class="material-icons">
-    visibility_off
+    {{eyes}}
     </span>
     </button>
     

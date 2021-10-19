@@ -10,19 +10,36 @@
   </button>
   <p>&nbsp;&nbsp;</p>
   
-  <a mat-button style="color: black;"  (click)='open(content)' target="_blank">Log-in</a>
-  <a mat-button style="color: black;" (click)="open2(content2)" target="_blank">Sign-up</a>
+  <a mat-button *ngIf="template" style="color: black;"  (click)='open(content)' target="_blank">Log-in</a>
+  <a mat-button *ngIf="template" style="color: black;" (click)="open2(content2)" target="_blank">Sign-up</a>
   <p>&nbsp;&nbsp;</p>
-  <a *ngIf="account" href="https://www.google.com/"><img style="height: 25px;width: 25px;border-radius: 90%;" src={{user2.url}}></a>
+
+  <div *ngIf="account" class="btn-group mr-3">
+      
+    <div class="btn-group" ngbDropdown role="group" aria-label="Button group with nested dropdown">
+      <button class="btn btn-outline-primary" ngbDropdownToggle>
+        <img style="height: 25px;width: 25px;border-radius: 90%;" src={{user2.url}}>
+
+      </button>
+      <div class="dropdown-menu" ngbDropdownMenu >
+        <button ngbDropdownItem >Hello</button>
+        <button ngbDropdownItem (click)="onlogout()">Logout</button>
+      </div>
+    </div>
+  </div>
+
+
+  
   <p *ngIf="account">&nbsp;&nbsp;</p>
-  <a *ngIf="account" style="top: 10%;" ><span style="color: white;" class="material-icons">
+  <a  style="top: 10%;" ><span style="color: white;" class="material-icons">
     shopping_cart
     </span>
-    <span style="color:white;border-radius: 90%;position: absolute;top: 1%;right: 0.5%;">&nbsp;0&nbsp;</span>
+    <span style="color:white;border-radius: 90%;position: absolute;top: 1%;right: 0.5%;">&nbsp;{{childpost}}&nbsp;</span>
     </a>
+    <p>{{childpost3}}</p>
 </mat-toolbar>
 </body>
-<ng-template  #content let-c="close"  let-d="dismiss"  style="height: 500px;">
+<ng-template #content let-c="close"  let-d="dismiss"  style="height: 500px;">
   <div class="modal-header">
     <h4 class="modal-title" id="modal-basic-title" style="text-align: center;">LOG-IN</h4>
     
@@ -30,10 +47,12 @@
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
+  <form  #loginForm="ngForm">
   <div class="modal-body">
-   
-   <input matInput  class="search" type="text" placeholder=" Email" [(ngModel)]="user.username" aria-label="Search" style="width: 100%;"> <br><br>
-   <input matInput  [style.width]="width" class="search" style="outline:none;border-style: none none solid none;" (keyup)="clk($event)" type="{{pass}}" placeholder="Password" [(ngModel)]="user.password" aria-label="Search"> <button  *ngIf="visible" (click)="pwd()" class="btn1"><span class="material-icons">
+    <mat-error style="color: red;" *ngIf="user_error">Email is required</mat-error>
+   <input matInput  class="search" type="text" placeholder=" Email" [(ngModel)]="user.username" #username="ngModel" (keyup)="clk($event)" aria-label="Search" style="width: 100%;" required> <br><br>
+   <mat-error style="color: red;" *ngIf=" pass_error">password is required</mat-error>
+   <input matInput  [style.width]="width" class="search" style="outline:none;border-style: none none solid none;" (keyup)="clk($event)" type="{{pass}}" placeholder="Password" [(ngModel)]="user.password" #password="ngModel" aria-label="Search" required> <button  *ngIf="visible" (click)="pwd()" class="btn1"><span class="material-icons">
     {{eyes}}
     </span>
     </button>
@@ -41,8 +60,9 @@
   </div>
   <div class="modal-footer">
     <a (click)="d('Cross click')" (click)="open2(content2)">Account doesn't exist</a>
-    <button type="button"  class="btn btn-outline-dark" (click)= "login()" (click)= "c('Save click')"  >Log-in</button>
+    <button type="submit"  class="btn btn-outline-dark" (click)= "login()" (click)= "c('Save click')" [disabled]="user_error || pass_error" >Log-in</button>
   </div>
+  </form>
 </ng-template>
 
 <ng-template #content2 let-c="close" let-d="dismiss" style="height: 500px;">
@@ -54,16 +74,17 @@
     </button>
   </div>
   <div class="modal-body">
-    <input class="search" type="text" placeholder=" Name" aria-label="Search" style="width: 100%;"> <br><br>
-    <input matInput  class="search" type="text" placeholder=" Email" [(ngModel)]="user.username" aria-label="Search" style="width: 100%;"> <br><br>
-   <input matInput  [style.width]="width" class="search" style="outline:none;border-style: none none solid none;" (keyup)="clk($event)" type="{{pass}}" placeholder="Password" [(ngModel)]="user.password" aria-label="Search"> <button  *ngIf="visible" (click)="pwd()" class="btn1"><span class="material-icons">
-    {{eyes}}
-    </span>
-    </button>
-    
+    <mat-error style="color: red;" *ngIf="signup_error">All fields are compulsary*</mat-error>
+    <input matInput class="search" type="text" placeholder=" Name" [(ngModel)]="signuser.username" aria-label="Search" (keyup)="clk($event)" style="width: 100%;"> <br><br>
+
+    <input matInput  class="search" type="text" placeholder=" Email" [(ngModel)]="signuser.email" aria-label="Search" (keyup)="clk($event)" style="width: 100%;"> <br><br>
+
+    <input matInput  class="search" type="password" placeholder=" Enter Password" [(ngModel)]="signuser.password1" aria-label="Search" (keyup)="clk($event)" style="width: 100%;"> <br><br>
+   
+    <input matInput  class="search" type="password" placeholder=" Confirm Password" [(ngModel)]="signuser.password2"  aria-label="Search" (keyup)="clk($event)" style="width: 100%;"> 
   </div>
   <div class="modal-footer">
     <a (click)="d('Cross click')" (click)="open(content)" >Account exist ? Log In</a>
-    <button type="button" class="btn btn-outline-dark" (click)="c('Save click')">Sign-up</button>
+    <button type="button" class="btn btn-outline-dark" (click)="c('Save click')" [disabled]="signup_error">Sign-up</button>
   </div>
 </ng-template>

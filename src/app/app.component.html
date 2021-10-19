@@ -1,4 +1,5 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<app-nav></app-nav>
+<div><P>{{var2}} {{var1}} {{var3}}</P></div>
+<app-nav [childpost]="var1" [childpost2]="var2" [childpost3]="var3"></app-nav>
 <app-head></app-head>
-<app-menu></app-menu>
+<app-menu (passedEvent3)="childEvent3($event)" (passedEvent)="childEvent($event)" (passedEvent2)="childEvent2($event)" ></app-menu>

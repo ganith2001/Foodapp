@@ -3,7 +3,8 @@ import { Dish } from '../shared/dish';
 import { DishService } from '../services/dish.service';
 export class arr{
  quantity:number; 
- price:number;
+ flag_add:boolean;
+ flag_del:boolean;
 }
 @Component({
   selector: 'app-menu',
@@ -11,12 +12,14 @@ export class arr{
   styleUrls: ['./menu.component.css']
 })
 export class MenuComponent implements OnInit {
-  @Output() passedEvent = new EventEmitter();
+
   @Output() passedEvent2 = new EventEmitter();
   @Output() passedEvent3 = new EventEmitter();
+  @Output() passedEvent5 = new EventEmitter();
   dishes: Dish[];
   total_price: number;
-  
+  items:number;
+ 
   constructor(private dishService: DishService) { }
    array:arr[]=[
     
@@ -27,21 +30,30 @@ export class MenuComponent implements OnInit {
     this.dishes = this.dishService.getdishes();
     this.q=0
     this.total_price=0
+    this.items=0
+    
     for(var v of this.dishes){
-        this.array.push({quantity:0,price:0});
+        this.array.push({quantity:0,flag_add:true,flag_del:false});
         
     }
   }
-  onSelectp(dish:Dish){
+ /*
+ <button class="button1"  (click)="onSelectp(dish)">+</button>
+            <input disabled style="width: 30px;" class="search" type="text" placeholder="{{array[dish.id].quantity}}" >  
+            
+            <button class="button1" (click)="onSelectn(dish)">-</button>
+ 
+ onSelectp(dish:Dish){
     
     
     this.array[dish.id].quantity=this.array[dish.id].quantity+1
     
     this.total_price=this.total_price+this.dishes[dish.id].price
-    
+    this.items=this.items+1
     this.passedEvent.emit(this.total_price);
     this.passedEvent2.emit(this.array[dish.id].quantity);
     this.passedEvent3.emit(dish.id);
+    this.passedEvent4.emit(this.items);
     
     
   }
@@ -52,9 +64,26 @@ export class MenuComponent implements OnInit {
       this.total_price=this.total_price-this.dishes[dish.id].price
         this.passedEvent.emit(this.total_price);
         this.passedEvent2.emit(this.array[dish.id].quantity);
+        this.items=this.items-1
+        this.passedEvent5.emit(dish.id);
+        this.passedEvent4.emit(this.items);
     }
-    if(this.array[dish.id].quantity<=1){
-      this.passedEvent3.emit(-1);
-    }
+   
+  }
+  */
+  onclick(dish:Dish){
+  
+    this.array[dish.id].flag_add=false
+    this.array[dish.id].flag_del=true
+    this.passedEvent3.emit(dish.id);
+    this.total_price=this.total_price+this.dishes[dish.id].price
+    this.passedEvent2.emit(this.total_price);
+  }
+  ondelete(dish:Dish){
+    this.array[dish.id].flag_add=true
+    this.array[dish.id].flag_del=false
+    this.passedEvent5.emit(dish.id);
+    this.total_price=this.total_price-this.dishes[dish.id].price
+    this.passedEvent2.emit(this.total_price);
   }
 }

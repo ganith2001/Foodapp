@@ -31,7 +31,7 @@
 
   
   <p *ngIf="account">&nbsp;&nbsp;</p>
-  <a  *ngIf="account"  style="top: 10%;" (click)="open3(cart)" ><span style="color: white;" class="material-icons">
+  <a   style="top: 10%;" (click)="open3(cart)" ><span style="color: white;" class="material-icons">
     shopping_cart
     </span>
     <span style="color:white;border-radius: 90%;position: absolute;top: 1%;right: 0.5%;">&nbsp;{{childpost}}&nbsp;</span>
@@ -100,11 +100,29 @@
     </button>
   </div>
   <div class="modal-body">
-    <p *ngFor="let i of childpost3" >
-      {{i}} {{dishes[i].name}}
-        
-      </p>
     
+      <mat-grid-list *ngFor="let i of childpost3" cols="7" rowHeight="25px">
+        <mat-grid-tile 
+            *ngFor="let tile of tiles"
+            [colspan]="tile.cols"
+            [rowspan]="tile.rows"
+            [style.background]="tile.color">
+            <img *ngIf="tile.text==='One'" style="height: 100%;width: 100%;border-radius: 100%;" src={{dishes[i].image}} alt="">
+           <p *ngIf="tile.text==='Two1'"> {{dishes[i].name}}</p>
+           
+           
+           <p *ngIf="tile.text==='Two2'"> {{dishes[i].hotel}},{{dishes[i].address}},{{dishes[i].city}}</p>
+           <p *ngIf="tile.text==='Two3'"> {{dishes[i].description}}</p>
+           <p *ngIf="tile.text==='Four'"> {{dishes[i].price  | currency:"&#8377;"}}</p>
+
+           <button *ngIf="tile.text==='Three'" class="button1"  (click)="onSelectp(dish)">+</button>
+            <input *ngIf="tile.text==='Three'"  disabled style="width: 20px;" class="search" type="text" placeholder="0" >  
+            
+            <button *ngIf="tile.text==='Three'" class="button1" (click)="onSelectn(dish)">-</button>
+           
+        </mat-grid-tile>
+        <hr>
+      </mat-grid-list>
     
     <p>{{childpost2}}</p>
   </div>

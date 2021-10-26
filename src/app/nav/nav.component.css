@@ -33,4 +33,9 @@ a:hover {
   background-color: none;
 }
 
+.button1{
+  width: 20px;
+  border-color: blue;
+  background-color: blue;
+}
 

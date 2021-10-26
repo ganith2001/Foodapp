@@ -3,6 +3,13 @@ import {  NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Dish } from '../shared/dish';
 import { DishService } from '../services/dish.service';
 
+export interface Tile {
+  color: string;
+  cols: number;
+  rows: number;
+  text: string;
+}
+
 export class arr{
   id:number; 
   items:number;
@@ -17,6 +24,17 @@ export class NavComponent implements OnInit {
   @Input() childpost2:number;
   @Input() childpost3:[];
   
+  tiles: Tile[] = [
+    {text: 'One', cols: 1, rows: 3, color: 'white'},
+    {text: 'Two1', cols: 4, rows: 1, color: 'white'},
+    {text: 'Three', cols: 1, rows: 3, color: 'white'},
+    {text: 'Four', cols: 1, rows: 3, color: 'white'},
+    {text: 'Two2', cols: 4, rows: 1, color: 'white'},
+    {text: 'Two3', cols: 4, rows: 1, color: 'white'},
+    
+    
+  ];
+
   dishes: Dish[];
   demo: number;
   

@@ -1,6 +1,6 @@
 <!--The content below is only a placeholder and can be replaced.-->
 
 
-<app-nav  [childpost3]="arr" [childpost]="quantity" [childpost2]="var2"  ></app-nav>
+<app-nav  [childpost3]="arr" [childpost]="quantity" [childpost2]="var2" (navEvent)="childEvent5($event)"  ></app-nav>
 <app-head></app-head>
 <app-menu (passedEvent5)="childEvent5($event)" (passedEvent3)="childEvent3($event)" (passedEvent2)="childEvent2($event)"  ></app-menu>

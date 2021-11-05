@@ -31,9 +31,7 @@ childEvent3(q){
 }
 childEvent5(q){ 
   this.var5=q 
-  if(this.quantity>0){ 
-  this.quantity=this.quantity-1
-  }
+  
   this.index=this.arr.indexOf(this.var5)
   this.arr.splice(this.index,1)
 }
@@ -43,5 +41,7 @@ childEvent2(q){
  
    
 }
+
+
 
 }

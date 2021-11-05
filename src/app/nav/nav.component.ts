@@ -1,7 +1,15 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit,Output, EventEmitter } from '@angular/core';
 import {  NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Dish } from '../shared/dish';
 import { DishService } from '../services/dish.service';
+import { identifierModuleUrl } from '@angular/compiler';
+
+export class array{
+  id:number;
+  quantity:number; 
+  disables:boolean;
+  
+ }
 
 export interface Tile {
   color: string;
@@ -23,7 +31,8 @@ export class NavComponent implements OnInit {
   @Input() childpost:number;
   @Input() childpost2:number;
   @Input() childpost3:[];
-  
+
+  @Output() navEvent = new EventEmitter();
   tiles: Tile[] = [
     {text: 'One', cols: 1, rows: 3, color: 'white'},
     {text: 'Two1', cols: 4, rows: 1, color: 'white'},
@@ -50,15 +59,36 @@ export class NavComponent implements OnInit {
   eyes="visibility"
   signup_error=true
   account=false
+  
   array=[];
   constructor(public modalService: NgbModal,private dishService: DishService) { 
     this.dishes = this.dishService.getdishes();
+
+   
   
   }
- 
-  ngOnInit() {
+  array2:array[]=[
     
+  ]
+  ngOnInit() {
    
+   
+  }
+
+  onSelectp(i){
+    
+    this.array2[i].quantity=this.array2[i].quantity+1
+   
+  }
+  onSelectn(i){
+    if(this.array2[i].quantity==1){
+      
+      this.navEvent.emit(i);
+      
+    }
+    else{
+    this.array2[i].quantity=this.array2[i].quantity-1
+    }
   }
   open(content) {
     
@@ -71,6 +101,10 @@ export class NavComponent implements OnInit {
   }
   open3(cart) {
     
+    for(var i of this.childpost3){
+      this.array2.push({id:i,quantity:1,disables:true});
+      
+  }
     this.modalService.open(cart);
   }
   clk(){

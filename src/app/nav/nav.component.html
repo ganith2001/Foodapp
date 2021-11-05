@@ -101,7 +101,7 @@
   </div>
   <div class="modal-body">
     
-      <mat-grid-list *ngFor="let i of childpost3" cols="7" rowHeight="25px">
+      <mat-grid-list *ngFor="let i of childpost3"   cols="7" rowHeight="25px">
         <mat-grid-tile 
             *ngFor="let tile of tiles"
             [colspan]="tile.cols"
@@ -115,10 +115,10 @@
            <p *ngIf="tile.text==='Two3'"> {{dishes[i].description}}</p>
            <p *ngIf="tile.text==='Four'"> {{dishes[i].price  | currency:"&#8377;"}}</p>
 
-           <button *ngIf="tile.text==='Three'" class="button1"  (click)="onSelectp(dish)">+</button>
-            <input *ngIf="tile.text==='Three'"  disabled style="width: 20px;" class="search" type="text" placeholder="0" >  
+           <button *ngIf="tile.text==='Three'" class="button1"  (click)="onSelectp(i)">+</button>
+            <input *ngIf="tile.text==='Three'"  disabled style="width: 20px;" class="search" type="text" placeholder="{{array2[i].quantity}}" >  
             
-            <button *ngIf="tile.text==='Three'" class="button1" (click)="onSelectn(dish)">-</button>
+            <button *ngIf="tile.text==='Three'" class="button1" (click)="onSelectn(i)" (click)="d('Cross click')" (click)="open3(cart)">-</button>
            
         </mat-grid-tile>
         <hr>

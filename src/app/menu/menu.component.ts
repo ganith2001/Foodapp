@@ -1,7 +1,6 @@
-import { Component, OnInit,Output, EventEmitter,OnDestroy} from '@angular/core';
+import { Component, OnInit,Output, EventEmitter} from '@angular/core';
 import { Dish } from '../shared/dish';
 import { DishService } from '../services/dish.service';
-import { Subscription } from 'rxjs';
 export class arr{
  quantity:number; 
  flag_add:boolean;
@@ -17,58 +16,27 @@ export class MenuComponent implements OnInit {
   @Output() passedEvent2 = new EventEmitter();
   @Output() passedEvent3 = new EventEmitter();
   @Output() passedEvent5 = new EventEmitter();
-  dishes: Dish[]=[];
+  dishes: Dish[];
   total_price: number;
   items:number;
-  private postsSub: Subscription;
+ 
   constructor(private dishService: DishService) { }
    array:arr[]=[
     
    ]
    q:number;
-   d: Dish[]=[];
+   
   ngOnInit(): void {
-  /*  this.dishes=this.dishService.getdishes()
-    console.log(typeof this.dishes);
-    */
-
-    this.dishService.getdishes().subscribe((posts:Dish[])=>
-    {
-   // this.dishes = posts
-    this.dishes = Object.values(posts);
-    //console.log(this.dishes)
-    }
-    );
-    
-    
-    
-    //  this.dishes = posts;
-      //console.log(this.dishes);
-    
-     
-  
-   /*this.postsSub = this.dishService.getPostUpdateListener()
-      .subscribe((posts: Dish[]) => {
-        this.dishes = posts;
-      }); */
-     // console.log(this.dishes);
-      
+    this.dishes = this.dishService.getdishes();
     this.q=0
     this.total_price=0
     this.items=0
     
     for(var v of this.dishes){
-      console.log(v)
         this.array.push({quantity:0,flag_add:true,flag_del:false});
-     
-    
+        
     }
-   
-    
   }
- /* ngOnDestroy() {
-    this.postsSub.unsubscribe();
-  } */
  /*
  <button class="button1"  (click)="onSelectp(dish)">+</button>
             <input disabled style="width: 30px;" class="search" type="text" placeholder="{{array[dish.id].quantity}}" >  

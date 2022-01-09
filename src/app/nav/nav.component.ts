@@ -62,7 +62,7 @@ export class NavComponent implements OnInit {
   
   array=[];
   constructor(public modalService: NgbModal,private dishService: DishService) { 
-     this.dishService.getdishes();
+    this.dishes = this.dishService.getdishes();
 
    
   

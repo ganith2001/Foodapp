@@ -1,8 +1,14 @@
-<div>
+<div *ngFor="let d of dishes" >
     
 
+
+  <p *ngFor="let dish of d">
+    hello {{dish.name}}
+  </p>
+
     <mat-grid-list cols="3" rowHeight="1:1.5">
-      <mat-grid-tile style="color: tomato;" *ngFor="let dish of dishes">
+      <mat-grid-tile style="color: tomato;" *ngFor="let dish of d" >
+        
         <mat-card style="border-radius: 20px;" class="example-card">
             
             <img mat-card-image class="img" style="height: 300px;border-radius: 20px;" src={{dish.image}} alt="Photo of a Shiba Inu">
@@ -23,8 +29,8 @@
               &nbsp;
               <button style="border-radius: 20px;" mat-button>{{dish.rating}} <mat-icon class="icon1">star</mat-icon></button>
               &nbsp;
-              <button style="width: 30%;" *ngIf="array[dish.id].flag_add"  (click)="onclick(dish)">ADD CART</button>
-              <button style="width: 30%;background-color: red;" *ngIf="array[dish.id].flag_del" (click)="ondelete(dish)">DELETE</button>
+              <button style="width: 30%;"  (click)="onclick(dish)">ADD CART</button>
+              <button style="width: 30%;background-color: red;"  (click)="ondelete(dish)">DELETE</button>
             
             
            &nbsp;
@@ -35,4 +41,5 @@
       </mat-grid-tile>
       
     </mat-grid-list>
-    </div>
+</div>
+    
